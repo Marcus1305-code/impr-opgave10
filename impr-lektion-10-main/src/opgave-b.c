@@ -62,9 +62,62 @@ int date_before(date d1, date d2) {
 
 /* Return the date after d */
 date tomorrow(date d) {
-    /* TODO: Implementation left as an exercise */
-
-
+    int y = d.year;
+    int days_in_month;
+    switch (d.month) {
+        case 1:
+            days_in_month = 31;
+            break;
+        case  2:
+            if (leapYear(y)) {
+                days_in_month = 29;
+            } else {
+                days_in_month  = 28;
+            }
+            break;
+        case 3:
+            days_in_month = 31;
+            break;
+        case 4:
+            days_in_month = 30;
+            break;
+        case 5:
+            days_in_month = 31;
+            break;
+        case 6:
+            days_in_month = 30;
+            break;
+        case 7:
+            days_in_month = 31;
+            break;
+        case 8:
+            days_in_month = 31;
+            break;
+        case 9:
+            days_in_month = 30;
+            break;
+        case 10:
+            days_in_month = 31;
+            break;
+        case 11:
+            days_in_month = 30;
+            break;
+        case 12:
+            days_in_month = 31;
+            break;
+    }
+    if (d.day == days_in_month) {
+        d.day = 1;
+        if (d.month == 12) {
+            d.month = 1;
+            d.year += 1;
+        } else {
+            d.month += 1;
+        }
+    } else {
+        d.day += 1;
+    }
+    return d;
 }
 
 /* Is y a leapyear */
